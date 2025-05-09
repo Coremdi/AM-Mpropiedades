@@ -1,0 +1,48 @@
+.testimonial-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    max-width: 300px;
+    opacity: 0;
+    animation: fadeInUp 0.5s forwards ease-in-out;
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.quote {
+    font-size: 1rem;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.info h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.info p {
+    margin: 2px 0;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.stars {
+    color: #f4c542;
+    font-size: 1.2rem;
+}

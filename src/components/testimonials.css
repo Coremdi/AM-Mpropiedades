@@ -1,0 +1,59 @@
+.testimonials-container { 
+    text-align: center;
+    padding: 50px 0;
+    background: linear-gradient(135deg, #c0c0c0, #e0e0e0); /* 👈 smoother gradient */
+
+}
+
+.testimonials-container h2 {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    color: #1a1f71;
+    position: relative;
+    display: inline-block;
+}
+
+.testimonials-container h2::after {
+    content: "";
+    display: block;
+    margin: 8px auto 0;
+    width: 60px;
+    height: 4px;
+    background: #1e90ff;  /* 👈 a bright accent bar */
+    border-radius: 2px;
+}
+
+.testimonials-slider {
+    width: 90%;
+    margin: 0 auto;  /* 👈 centers the slider block under the title */
+  }
+  
+  .testimonials-slider .slick-slide {
+    display: flex !important;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .testimonials-slider .slick-dots li button:before {
+    color: #1e90ff;
+    font-size: 12px;
+  }
+  
+  .testimonials-slider .slick-prev,
+  .testimonials-slider .slick-next {
+    z-index: 2;
+  }
+  
+  .testimonials-slider .slick-prev:before,
+  .testimonials-slider .slick-next:before {
+    color: #1e90ff;
+    font-size: 24px;
+  }
+  
+  @media (max-width: 768px) {
+    .testimonials-slider {
+      padding: 0 1rem;
+    }
+  }
+  

@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Moderno departamento en Palermo",
+    "location": "Palermo, CABA",
+    "price": 120000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "superficie":200,
+    "type": "Departamento",
+    "images": [
+      "https://picsum.photos/id/1011/300/200",
+      "https://picsum.photos/id/1012/300/200",
+      "https://picsum.photos/id/1013/300/200"
+    ],
+    "description": "Amplio departamento moderno con vista a la ciudad, cercano a restaurantes y parques. Perfecto para familias o parejas.",
+  "amenities": ["Piscina", "Gimnasio", "Seguridad 24h", "Parrilla", "Balcón"],
+  "contact": {
+    "whatsapp": "+5491123456789",
+    "email": "info@realestate.com"
+  },
+  "url": "https://yourapp.com/property/1",
+  "listed_date": "2025-04-01",
+  "last_updated": "2025-04-25",
+  "status": "Available",
+  "price_history": [
+    { "date": "2025-03-01", "price": 130000 },
+    { "date": "2025-04-01", "price": 125000 },
+    { "date": "2025-04-20", "price": 120000 }
+  ]
+  },
+  {
+    "id": 2,
+    "title": "Casa con jardín en Tigre",
+    "location": "Tigre, Buenos Aires",
+    "price": 250000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "superficie":400,
+    "type": "Casa",
+    "images": [
+      "https://picsum.photos/id/1024/300/200",
+      "https://picsum.photos/id/1025/300/200",
+      "https://picsum.photos/id/1026/300/200"
+    ],
+    "description": "Amplio departamento moderno con vista a la ciudad, cercano a restaurantes y parques. Perfecto para familias o parejas.",
+  "amenities": ["Piscina", "Gimnasio", "Seguridad 24h", "Parrilla", "Balcón"],
+  "contact": {
+    "whatsapp": "+5491123456789",
+    "email": "info@realestate.com"
+  },
+  "url": "https://yourapp.com/property/1",
+  "listed_date": "2025-04-01",
+  "last_updated": "2025-04-25",
+  "status": "Available",
+  "price_history": [
+    { "date": "2025-03-01", "price": 130000 },
+    { "date": "2025-04-01", "price": 125000 },
+    { "date": "2025-04-20", "price": 120000 }
+  ]
+  }
+]
