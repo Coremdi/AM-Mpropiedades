@@ -3,7 +3,7 @@ import Navbar from './components/navbar';
 import LandingPage from './components/landingpage';
 import About from './components/about';
 import Testimonials from './components/testimonials';
-import BuyNRent from './components/buynrent';
+//import BuyNRent from './components/buynrent';
 import Sell from './components/sell';
 //import Contact from './components/contact';
 import Footer from './components/footer';
@@ -17,7 +17,7 @@ const App = () => {
   const landingpageRef = useRef(null);
   const aboutRef = useRef(null);
   const testimonialsRef = useRef(null);
-  const buynrentRef = useRef(null);
+  //const buynrentRef = useRef(null);
   const sellRef = useRef(null);
   //const contactRef = useRef(null);
   const footerRef = useRef(null);
@@ -36,7 +36,7 @@ const App = () => {
       <div>
         <Navbar
           scrollToSection={scrollToSection}
-          refs={{ landingpageRef, aboutRef, testimonialsRef, buynrentRef, sellRef, /*contactRef,*/ footerRef }}
+          refs={{ landingpageRef, aboutRef, testimonialsRef, /*buynrentRef,*/ sellRef, /*contactRef,*/ footerRef }}
         />
         <div style={{ marginTop: '8px', padding: '20px' }}>
           <Routes>
@@ -50,9 +50,9 @@ const App = () => {
                   <section ref={aboutRef}>
                     <About />
                   </section>
-                  <section ref={buynrentRef}>
+                  {/*<section ref={buynrentRef}>
                     <BuyNRent />
-                  </section>
+                  </section>*/}
                   <section ref={sellRef}>
                     <Sell />
                   </section> 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../assets/logo.svg';
+import logo from '../assets/AMpropiedades.ico';
 import { Link, useLocation } from 'react-router-dom';
 import './navbar.css';
 
 const Navbar = ({ scrollToSection, refs }) => {
-  const { landingpageRef, aboutRef, testimonialsRef, buynrentRef, sellRef/*, contactRef*/ } = refs;
+  const { landingpageRef, aboutRef, testimonialsRef, /*buynrentRef,*/ sellRef/*, contactRef*/ } = refs;
   const location = useLocation();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -37,7 +37,7 @@ const Navbar = ({ scrollToSection, refs }) => {
       <div className="navbar-center">
         <Link to="/" onClick={() => handleScroll(landingpageRef)}><button>Inicio</button></Link>
         <Link to="/" onClick={() => handleScroll(aboutRef)}><button>Nosotros</button></Link>
-        <Link to="/" onClick={() => handleScroll(buynrentRef)}><button>Comprar&Alquilar</button></Link>
+        {/*<Link to="/" onClick={() => handleScroll(buynrentRef)}><button>Comprar&Alquilar</button></Link>*/}
         <Link to="/" onClick={() => handleScroll(sellRef)}><button>Vender</button></Link>
         <Link to="/" onClick={() => handleScroll(testimonialsRef)}><button>Testimonios</button></Link>
         {/*<Link to="/" onClick={() => handleScroll(contactRef)}><button>Contactanos</button></Link>*/}
@@ -57,7 +57,7 @@ const Navbar = ({ scrollToSection, refs }) => {
     >
       <Link to="/" onClick={() => handleScroll(landingpageRef)}>Inicio</Link>
       <Link to="/" onClick={() => handleScroll(aboutRef)}>Nosotros</Link>
-      <Link to="/" onClick={() => handleScroll(buynrentRef)}>Comprar&Alquilar</Link>
+      {/*<Link to="/" onClick={() => handleScroll(buynrentRef)}>Comprar&Alquilar</Link>*/}
       <Link to="/" onClick={() => handleScroll(sellRef)}>Vender</Link>
       <Link to="/" onClick={() => handleScroll(testimonialsRef)}>Testimonios</Link>
       {/*<Link to="/" onClick={() => handleScroll(contactRef)}>Contactanos</Link>*/}

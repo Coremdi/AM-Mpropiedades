@@ -51,7 +51,7 @@ const PropertyLandingPage = () => {
   if (!property) return <p>Cargando propiedad...</p>;
 
   const whatsappMessage = `Hola, estoy interesado en la propiedad: ${window.location.href}. ¿Podrían brindarme más detalles?`;
-  const whatsappLink = `https://wa.me/598XXXXXXXX?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappLink = `https://wa.me/5492616086463?text=${encodeURIComponent(whatsappMessage)}`;
 
   const mailSubject = `Consulta sobre la propiedad: ${property.title}`;
   const mailBody = `Hola,\n\nEstoy interesado en la propiedad: ${window.location.href}. ¿Podrían brindarme más información?\n\nGracias.`;
@@ -128,7 +128,7 @@ const PropertyLandingPage = () => {
           <FaWhatsapp /> Contáctanos por WhatsApp
         </a>
         <a
-          href={`mailto:info@tudominio.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`}
+          href={`mailto:amympropiedades@gmail.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`}
           className="contact-icon email"
         >
           <FaEnvelope /> Contáctanos por Email
