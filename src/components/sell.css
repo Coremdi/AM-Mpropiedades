@@ -16,9 +16,11 @@
 
 .sell-divider {
   border: none;
-  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid rgba(96, 233, 199, 0.3);
   width: 80%;
-  margin: 2rem auto;
+  margin: 2rem auto;  
+  background-color: #0ddabe;
+
 }
 
 .sell-content {

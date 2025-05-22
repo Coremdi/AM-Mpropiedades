@@ -29,23 +29,34 @@
   100% { transform: rotate(360deg); }
 }
 
-   
-.buynrent-title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  max-width: 800px;
+.landing-title {
+  font-size: 4rem;
+  font-weight: 900;
   color: #0ddabe;
-  text-shadow: 0 0 15px rgba(13, 218, 190, 0.5);
+  text-shadow: 0 0 25px rgba(13, 218, 190, 0.6);
   z-index: 1;
-  letter-spacing: 1px;
-  margin: 0 20px;
-  line-height: 1.4;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 2px;
   transition: transform 0.3s ease;
 }
 
-.buynrent-title:hover {
-  transform: scale(1.02);
+.landing-title:hover {
+  transform: scale(1.03);
 }
+
+.landing-subtitle {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #0ddabe;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  z-index: 1;
+  margin: 0 0 20px;
+  text-align: center;
+  max-width: 800px;
+  line-height: 1.5;
+}
+
 
 .buynrent-button {
   display: inline-block;
