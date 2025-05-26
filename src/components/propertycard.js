@@ -9,6 +9,13 @@ const PropertyCard = ({ property }) => {
   return (
       <div className="property-card"  onClick={() => window.location.href = `/property/${property.id}`}>
 
+        {/* Status Badge */}
+      {property.status && (
+        <div className={`property-status ${property.status.toLowerCase()}`}>
+          {property.status}
+        </div>
+      )}
+
       <div onClick={(e) => e.stopPropagation()}>
     <ImageSlider images={property.images} title={property.title} />
   </div>

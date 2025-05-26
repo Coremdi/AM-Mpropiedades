@@ -8,11 +8,44 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  position: relative;
+
+}
+
+.property-status {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: #007bff;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  z-index: 10; /* Ensure it's above image */
+
+}
+
+/* Color variations based on status */
+.property-status.disponible {
+  background-color: #28a745; /* green */
+}
+
+.property-status.reservado {
+  background-color: #ffc107; /* yellow */
+  color: black;
+}
+
+.property-status.vendido {
+  background-color: #dc3545; /* red */
 }
 
 .property-card:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 0 25px rgba(13, 218, 190, 0.6);
   border-color: #ccc;
 }
 
@@ -20,6 +53,7 @@
   opacity: 1;
   transform: translateY(0);
 }
+
 
 .property-card .image-slider {
   overflow: hidden;
