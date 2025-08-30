@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # custom
-/backend/
-/backup/
+/backend
+/backup
 /backend/requirements.txt
 /src/App copy.txt
