@@ -1,0 +1,42 @@
+.under-construction-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #f1f5f9;
+  padding: 2rem;
+}
+
+.under-construction-card {
+  background-color: white;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  border: 1px solid #e2e8f0;
+}
+
+.construction-icon {
+  font-size: 3rem;
+  color: #f59e0b; /* amber-500 */
+  margin-bottom: 1rem;
+}
+
+.under-construction-card h1 {
+  font-size: 1.8rem;
+  color: #0f172a; /* slate-900 */
+  margin-bottom: 0.5rem;
+}
+
+.under-construction-card p {
+  font-size: 1.1rem;
+  color: #475569; /* slate-600 */
+  margin-bottom: 1.5rem;
+}
+
+.tools-icon {
+  font-size: 2rem;
+  color: #2563eb; /* blue-600 */
+}

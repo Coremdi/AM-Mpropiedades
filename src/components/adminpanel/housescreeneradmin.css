@@ -128,6 +128,28 @@
   color: white;
 }
 
+.add-property-button {
+  background-color: #28a745;
+  color: white;
+  border: 2px solid #28a745; /* ← Add border to match reset button */
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600; /* optional, to match reset button */
+  transition: background-color 0.2s ease;
+}
+
+.add-property-button:hover {
+  background-color: #218838;
+  border-color: #218838;
+}
+
+.reset-button,
+.add-property-button {
+  margin: 0; /* ❗️ importante: elimina cualquier separación extra */
+}
+
 .property-list {
     display: grid;
     gap: 1vw; /* small responsive gap */
@@ -137,20 +159,35 @@
 
 
   }
-  
-  @keyframes fadeInGrid {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
 
-  .no-results {
-    text-align: center;
-    color: #888;
-    font-style: italic;
-    margin-top: 2rem;
-  }
+  .edit-button, .delete-button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
 
-  .sort-select {
+.edit-button {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #2563eb;
+}
+
+.delete-button {
+  background-color: #ef4444;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #dc2626;
+}
+
+.sort-select {
   background-color: #ffc107;
   color: rgb(0, 0, 0);
   border: 2px solid #ffc107; /* ← Add border to match reset button */
@@ -165,6 +202,20 @@
 .sort-select:hover {
   border-color: #a0aec0;
 }
+  
+  @keyframes fadeInGrid {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .no-results {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    margin-top: 2rem;
+    width: 100%;
+
+  }
   
 /* Responsive Behavior */
 @media (max-width: 768px) {

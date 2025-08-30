@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './imageslider.css';
+import API_URL from "../config"; // Import API_URL
 
 const ImageSlider = ({ images = [], title }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -7,14 +8,17 @@ const ImageSlider = ({ images = [], title }) => {
   if (!images.length) {
     return (
       <div className="image-slider">
-        <img
-            src={images[currentIndex]}
-            alt="Property"
-            className="slider-image"
-            />        
+        <p>No hay imágenes.</p>
       </div>
     );
   }
+
+  const getFullImageUrl = (imgUrl) => {
+    if (imgUrl.startsWith('http://') || imgUrl.startsWith('https://')) {
+      return imgUrl; // External image (like picsum)
+    }
+    return `${API_URL}${imgUrl}`; // Internal image stored on your backend
+  };
 
   const nextImage = (e) => {
     e.stopPropagation();
@@ -31,12 +35,16 @@ const ImageSlider = ({ images = [], title }) => {
   return (
     <div className="image-slider">
       <img
-        src={images[currentIndex]}
+        src={getFullImageUrl(images[currentIndex])}
         alt={`${title} ${currentIndex + 1}`}
         className="slider-image"
       />
-      <button className="slider-button prev" onClick={prevImage}>&#10094;</button>
-      <button className="slider-button next" onClick={nextImage}>&#10095;</button>
+      <button className="slider-button prev" onClick={prevImage}>
+        &#10094;
+      </button>
+      <button className="slider-button next" onClick={nextImage}>
+        &#10095;
+      </button>
     </div>
   );
 };

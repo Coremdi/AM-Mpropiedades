@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './navbar.css';
 
 const Navbar = ({ scrollToSection, refs }) => {
-  const { landingpageRef, aboutRef, testimonialsRef, /*buynrentRef,*/ sellRef/*, contactRef*/ } = refs;
+  const { landingpageRef, aboutRef, testimonialsRef, sellRef } = refs;
   const location = useLocation();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -22,7 +22,7 @@ const Navbar = ({ scrollToSection, refs }) => {
   const handleScroll = (ref) => {
     if (location.pathname === '/' && ref?.current) {
       scrollToSection(ref);
-      setMobileMenuOpen(false); // Close mobile menu after click
+      setMobileMenuOpen(false); 
     }
   };
   
@@ -37,10 +37,9 @@ const Navbar = ({ scrollToSection, refs }) => {
       <div className="navbar-center">
         <Link to="/" onClick={() => handleScroll(landingpageRef)}><button>Inicio</button></Link>
         <Link to="/" onClick={() => handleScroll(aboutRef)}><button>Nosotros</button></Link>
-        {/*<Link to="/" onClick={() => handleScroll(buynrentRef)}><button>Comprar&Alquilar</button></Link>*/}
+        <Link to="/house-screener"><button>Propiedades</button></Link>
         <Link to="/" onClick={() => handleScroll(sellRef)}><button>Vender</button></Link>
         <Link to="/" onClick={() => handleScroll(testimonialsRef)}><button>Testimonios</button></Link>
-        {/*<Link to="/" onClick={() => handleScroll(contactRef)}><button>Contactanos</button></Link>*/}
       </div>
 
       <div className="navbar-right">
@@ -53,14 +52,13 @@ const Navbar = ({ scrollToSection, refs }) => {
   <div className="mobile-menu-overlay" onClick={() => setMobileMenuOpen(false)}>
     <div
       className="mobile-menu"
-      onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside menu
+      onClick={(e) => e.stopPropagation()} 
     >
       <Link to="/" onClick={() => handleScroll(landingpageRef)}>Inicio</Link>
       <Link to="/" onClick={() => handleScroll(aboutRef)}>Nosotros</Link>
-      {/*<Link to="/" onClick={() => handleScroll(buynrentRef)}>Comprar&Alquilar</Link>*/}
+      <Link to="/house-screener">Propiedades</Link>
       <Link to="/" onClick={() => handleScroll(sellRef)}>Vender</Link>
       <Link to="/" onClick={() => handleScroll(testimonialsRef)}>Testimonios</Link>
-      {/*<Link to="/" onClick={() => handleScroll(contactRef)}>Contactanos</Link>*/}
     </div>
   </div>
       )}

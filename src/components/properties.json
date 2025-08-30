@@ -7,6 +7,7 @@
     "bedrooms": 2,
     "bathrooms": 1,
     "superficie":200,
+    "operation": "Compra",
     "type": "Departamento",
     "images": [
       "https://picsum.photos/id/1011/300/200",
@@ -22,7 +23,7 @@
   "url": "https://yourapp.com/property/1",
   "listed_date": "2025-04-01",
   "last_updated": "2025-04-25",
-  "status": "Available",
+  "status": "Disponible",
   "price_history": [
     { "date": "2025-03-01", "price": 130000 },
     { "date": "2025-04-01", "price": 125000 },
@@ -37,13 +38,14 @@
     "bedrooms": 3,
     "bathrooms": 2,
     "superficie":400,
+    "operation": "Alquiler",
     "type": "Casa",
     "images": [
       "https://picsum.photos/id/1024/300/200",
       "https://picsum.photos/id/1025/300/200",
       "https://picsum.photos/id/1026/300/200"
     ],
-    "description": "Amplio departamento moderno con vista a la ciudad, cercano a restaurantes y parques. Perfecto para familias o parejas.",
+    "description": "Amplia Casa moderno con vista a la ciudad, cercano a restaurantes y parques. Perfecto para familias o parejas.",
   "amenities": ["Piscina", "Gimnasio", "Seguridad 24h", "Parrilla", "Balcón"],
   "contact": {
     "whatsapp": "+5491123456789",
@@ -52,7 +54,7 @@
   "url": "https://yourapp.com/property/1",
   "listed_date": "2025-04-01",
   "last_updated": "2025-04-25",
-  "status": "Available",
+  "status": "Reservado",
   "price_history": [
     { "date": "2025-03-01", "price": 130000 },
     { "date": "2025-04-01", "price": 125000 },

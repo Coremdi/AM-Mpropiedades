@@ -40,3 +40,19 @@ body {
     transform: rotate(360deg);
   }
 }
+
+::-webkit-scrollbar {
+  width: 12px; /* Width for vertical scrollbar */
+  height: 12px; /* Height for horizontal scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0ddabe; /* Gradient for the thumb */
+  border-radius: 6px;
+  border: 2px solid #ffffff; /* Optional: Adds a border */
+}
+
+::-webkit-scrollbar-track {
+  background:linear-gradient(135deg, #0c262a 0%, #0c262a 100%); /* Track color */
+  border-radius: 6px;
+}

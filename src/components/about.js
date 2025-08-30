@@ -11,7 +11,7 @@ const About = () => {
         <div className="about-text">
           <h2>Nuestra esencia en AM&M Propiedades</h2>
           <p>
-            En AM Propiedades vivimos y respiramos el mundo inmobiliario.
+            En AM&M Propiedades vivimos y respiramos el mundo inmobiliario.
             Nuestra historia está marcada por una profunda pasión por los bienes raíces y por un compromiso constante con la excelencia.
             A lo largo del tiempo, hemos construido una trayectoria sólida y confiable, guiando a nuestros clientes en la compra, venta y alquiler de inmuebles residenciales y comerciales con un enfoque personalizado.
             <br /><br />

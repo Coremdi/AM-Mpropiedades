@@ -1,80 +1,94 @@
 import './App.css';
-import Navbar from './components/navbar';
-import LandingPage from './components/landingpage';
-import About from './components/about';
-import Testimonials from './components/testimonials';
-//import BuyNRent from './components/buynrent';
-import Sell from './components/sell';
-//import Contact from './components/contact';
-import Footer from './components/footer';
-import HouseScreener from './components/housescreener';
-import PropertyLandingPage from './components/propertylandingpage';
-import React, {useRef} from 'react';
-import { BrowserRouter as Router, Routes, Route/*, Link*/ } from 'react-router-dom';
+import React, { useRef, Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from "./components/adminpanel/protectedroute";
 
+// Lazy load less-used pages for performance
+const AdminLayout = lazy(() => import('./components/adminlayout'));
+const PublicLayout = lazy(() => import('./components/publiclayout'));
+const LandingPage = lazy(() => import('./components/landingpage'));
+const About = lazy(() => import('./components/about'));
+const Testimonials = lazy(() => import('./components/testimonials'));
+const Sell = lazy(() => import('./components/sell'));
+const HouseScreener = lazy(() => import('./components/housescreener'));
+const PropertyLandingPage = lazy(() => import('./components/propertylandingpage'));
+const AdminLogin = lazy(() => import('./components/adminpanel/adminlogin'));
+const AdminLandingPage = lazy(() => import('./components/adminpanel/adminlandingpage'));
+const ManageListings = lazy(() => import('./components/adminpanel/housescreeneradmin'));
+const EditPropertyPage = lazy(() => import('./components/adminpanel/editpropertypage'));
+const CreateProperty = lazy(() => import('./components/adminpanel/createproperty'));
+const UnderConstruction = lazy(() => import('./components/adminpanel/underconstruction'));
+const ResetPassword = lazy(() => import('./components/adminpanel/resetpassword'));
+const ForgotPassword = lazy(() => import('./components/adminpanel/forgotpassword'));
 
-const App = () => {
+export default function App() {
   const landingpageRef = useRef(null);
   const aboutRef = useRef(null);
   const testimonialsRef = useRef(null);
-  //const buynrentRef = useRef(null);
   const sellRef = useRef(null);
-  //const contactRef = useRef(null);
   const footerRef = useRef(null);
 
   const scrollToSection = (ref) => {
-    if (ref && ref.current) {
+    if (ref?.current) {
       window.scrollTo({
-        top: ref.current.offsetTop - 80, // Adjust for navbar height
+        top: ref.current.offsetTop - 80,
         behavior: 'smooth',
       });
     }
   };
- 
- return (
-   <Router>
-      <div>
-        <Navbar
-          scrollToSection={scrollToSection}
-          refs={{ landingpageRef, aboutRef, testimonialsRef, /*buynrentRef,*/ sellRef, /*contactRef,*/ footerRef }}
-        />
-        <div style={{ marginTop: '8px', padding: '20px' }}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <section ref={landingpageRef}>
-                    <LandingPage/>
-                  </section>
-                  <section ref={aboutRef}>
-                    <About />
-                  </section>
-                  {/*<section ref={buynrentRef}>
-                    <BuyNRent />
-                  </section>*/}
-                  <section ref={sellRef}>
-                    <Sell />
-                  </section> 
-                  <section ref={testimonialsRef}>
-                    <Testimonials />
-                  </section>  
-                 {/* <section ref={contactRef}>
-                    <Contact />
-                  </section>*/}
-                  <section ref={footerRef}>
-                    <Footer />
-                  </section>
-                </>
-              }
-            />
-            <Route path="/house-screener" element={<HouseScreener />} />
-            <Route path="/property/:id" element={<PropertyLandingPage />} />
-           </Routes>
-        </div>
-      </div>
-    </Router>
- );
-};
 
-export default App;
+  const refs = { landingpageRef, aboutRef, testimonialsRef, sellRef, footerRef };
+
+  return (
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          {/* Public routes */}
+          <Route
+            path="/"
+            element={
+              <PublicLayout scrollToSection={scrollToSection} refs={refs}>
+                <main>
+                  <section ref={landingpageRef}><LandingPage /></section>
+                  <section ref={aboutRef}><About /></section>
+                  <section ref={sellRef}><Sell /></section>
+                  <section ref={testimonialsRef}><Testimonials /></section>
+                  <section ref={footerRef}></section>
+                </main>
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/house-screener"
+            element={
+              <PublicLayout scrollToSection={scrollToSection} refs={refs}>
+                <HouseScreener />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/property/:id"
+            element={
+              <PublicLayout scrollToSection={scrollToSection} refs={refs}>
+                <PropertyLandingPage />
+              </PublicLayout>
+            }
+          />
+
+          {/* Admin routes */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminLogin />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
+            <Route path="reset-password" element={<ResetPassword />} />
+            <Route path="adminlandingpage" element={<ProtectedRoute><AdminLandingPage /></ProtectedRoute>} />
+            <Route path="manage-listings" element={<ProtectedRoute><ManageListings /></ProtectedRoute>} />
+            <Route path="edit-property/:id" element={<ProtectedRoute><EditPropertyPage /></ProtectedRoute>} />
+            <Route path="new-property" element={<ProtectedRoute><CreateProperty /></ProtectedRoute>} />
+            <Route path="metricas" element={<ProtectedRoute><UnderConstruction /></ProtectedRoute>} />
+            <Route path="clientes" element={<ProtectedRoute><UnderConstruction /></ProtectedRoute>} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </Router>
+  );
+}

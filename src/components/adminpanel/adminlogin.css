@@ -1,0 +1,128 @@
+.admin-login-container {
+  min-height: 100vh; /* Use min-height to allow content to grow if needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px; /* Prevent content from touching edges on small screens */
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-title {
+  margin-bottom: 24px;
+  font-size: 28px;
+  text-align: center;
+  color: #333;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-input {
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-top: -8px;
+  gap: 10px;
+}
+
+.remember-me input {
+  margin-right: 6px;
+}
+
+.forgot-password {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-button {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.login-error {
+  color: #dc3545;
+  margin-bottom: -8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-success {
+  color: #28a745;
+  margin-bottom: -8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* 🔹 Responsive Styles */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .login-title {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .login-input {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  .login-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* Stack options vertically on very small screens */
+  .login-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 13px;
+  }
+}

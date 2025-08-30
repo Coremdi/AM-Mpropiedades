@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import './housescreener.css';
-import PropertyCard from './propertycard';
-import API_URL from "../config"; // Import API_URL
+import "./housescreeneradmin.css";
+import PropertyCard from "../propertycard";
+import API_URL from "../../config"; // Import API_URL
 
 
-const HouseScreener = () => {
-   // ------------------------ state ------------------------
+const HouseScreenerAdmin = () => {
+  // ------------------------ state ------------------------
   const [allProperties, setAllProperties] = useState([]);   // ← fetched data
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -49,7 +49,7 @@ const HouseScreener = () => {
 
   // ------------------------ fetch once ------------------------
   useEffect(() => {
-    fetch(`${API_URL}/api/properties`)
+    fetch(`${API_URL}/api/admin/properties`)
       .then((res) => {
         if (!res.ok) throw new Error("No se pudieron cargar las propiedades");
         return res.json();
@@ -162,7 +162,28 @@ const HouseScreener = () => {
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
 
- 
+  const handleDelete = async (propertyId) => {
+  const confirmDelete = window.confirm("¿Estás seguro que deseas eliminar esta propiedad?");
+  if (!confirmDelete) return;
+
+  try {
+    const res = await fetch(`${API_URL}/api/admin/deleteproperty?id=${propertyId}`, {
+      method: "POST"
+    });
+
+    if (!res.ok) throw new Error("Falló la eliminación");
+
+    alert("Propiedad eliminada exitosamente.");
+
+    // Remove the deleted property from state
+    setAllProperties((prev) => prev.filter((p) => p.id !== propertyId));
+    setFilteredProperties((prev) => prev.filter((p) => p.id !== propertyId));
+  } catch (err) {
+    console.error(err);
+    alert("Error al eliminar la propiedad.");
+  }
+};
+
   // close dropdowns when clicking outside (unchanged from your version)
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -185,7 +206,7 @@ const HouseScreener = () => {
 
   return (
     <div className="screener-container">
-      <h2>Encontra tu proxima propiedad</h2>
+      <h2>Maneja tus propiedades</h2>
             <div className="filter-card">
         <div className="filters">        
           <input
@@ -399,7 +420,14 @@ const HouseScreener = () => {
       Resetear filtros
     </button>
 
-         <select
+    <button
+      className="add-property-button"
+      onClick={() => navigate("/admin/new-property")}
+    >
+      + Agregar propiedad
+    </button>
+
+     <select
       value={priceSortOrder}
       onChange={(e) => setPriceSortOrder(e.target.value)}
       className="sort-select"
@@ -412,13 +440,16 @@ const HouseScreener = () => {
 
     
 
-      {filteredProperties.length > 0 ? (
+{filteredProperties.length > 0 ? (
   <div className="property-list">
     {filteredProperties.map((property) => (
       <PropertyCard
-              key={property.id}
-              property={property}
-            />
+        key={property.id}
+        property={property}
+        isAdmin={true}
+        onDelete={() => handleDelete(property.id)}
+        onEdit={() => alert(`Editar ${property.id}`)}
+      />
     ))}
   </div>
 ) : (
@@ -430,4 +461,4 @@ const HouseScreener = () => {
   );
 };
 
-export default HouseScreener;
+export default HouseScreenerAdmin;

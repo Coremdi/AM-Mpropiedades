@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { FaWhatsapp, FaEnvelope, FaArrowLeft, FaBed, FaBath, FaHome, FaRulerCombined } from "react-icons/fa";
 import "./propertylandingpage.css";
-import propertiesData from './properties.json';
+//import propertiesData from './properties.json';
 import FullScreenSlider from "./fullscreenslider"; // Import new component
-
+import { useAuth } from "./adminpanel/authcontext"; // Adjust path if needed
+import { useNavigate } from "react-router-dom";
+import API_URL from "../config"; // Import API_URL
 
 
 
@@ -13,21 +15,63 @@ const PropertyLandingPage = () => {
   const [property, setProperty] = useState(null);
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
-
   const [showSlider, setShowSlider] = useState(false);
   const [sliderStartIndex, setSliderStartIndex] = useState(0);
   const [selectedAlerts, setSelectedAlerts] = useState([]);
+  const { isAdmin } = useAuth(); // ✅
+  const navigate = useNavigate();
 
+
+  
+const handleDelete = async () => {
+  const confirmDelete = window.confirm("¿Estás seguro que deseas eliminar esta propiedad?");
+  if (!confirmDelete) return;
+
+  try {
+    const res = await fetch(`${API_URL}/api/admin/deleteproperty?id=${property.id}`, {
+      method: "POST",
+    });
+
+    if (!res.ok) throw new Error("Falló la eliminación");
+
+    alert("Propiedad eliminada exitosamente.");
+
+    // Redirect after deletion
+    if (isAdmin) {
+      navigate("/admin/manage-listings");
+    } else {
+      navigate("/house-screener");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Error al eliminar la propiedad.");
+  }
+};
+
+const handleBack = () => {
+  if (isAdmin) {
+    navigate("/admin/manage-listings");
+  } else {
+    navigate("/house-screener");
+  }
+};
 
   useEffect(() => {
-    // Fetch the property data based on ID (simulate API call)
-    //const fetchProperty = async () => {
-      // Replace this with your real API call
-     // const data = await fetch(`/api/properties/${id}`).then(res => res.json());
-      //setProperty(data);
-      const foundProperty = propertiesData.find((prop) => prop.id.toString() === id);
-      setProperty(foundProperty); 
-    }, [id]);
+          //const foundProperty = propertiesData.find((prop) => prop.id.toString() === id); para leer de un json llamado properties
+      //setProperty(foundProperty); 
+       const fetchProperty = async () => {
+    try {
+      const response = await fetch(`${API_URL}/api/admin/properties/${id}`);
+      const data = await response.json();
+      setProperty(data);
+    } catch (error) {
+      console.error("Error fetching property:", error);
+    }
+  };
+
+  fetchProperty();
+}, [id]);
+   
 
   //const handleSubscribe = async () => {
     //if (!email) return;
@@ -51,7 +95,8 @@ const PropertyLandingPage = () => {
   if (!property) return <p>Cargando propiedad...</p>;
 
   const whatsappMessage = `Hola, estoy interesado en la propiedad: ${window.location.href}. ¿Podrían brindarme más detalles?`;
-  const whatsappLink = `https://wa.me/5492616086463?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappLink = `https://wa.me/${property.contact?.whatsapp.replace("+", "")}?text=${encodeURIComponent(whatsappMessage)}`;
+
 
   const mailSubject = `Consulta sobre la propiedad: ${property.title}`;
   const mailBody = `Hola,\n\nEstoy interesado en la propiedad: ${window.location.href}. ¿Podrían brindarme más información?\n\nGracias.`;
@@ -60,26 +105,47 @@ const PropertyLandingPage = () => {
     <>
 
     <div className="property-landing-container">
-       <Link to="/house-screener" className="back-button">
-        <FaArrowLeft style={{ marginRight: '8px' }} />
-        Volver
-      </Link>
+       <button className="back-button" onClick={handleBack}>
+  <FaArrowLeft style={{ marginRight: '8px' }} />
+  Volver
+</button>
 
-      <div className="property-images-grid">
-        <div className="main-image">
-          {property.images[0] && (
-            <img src={property.images[0]} alt="Propiedad principal"  onClick={() => { setShowSlider(true); setSliderStartIndex(0); }} />
-          )}
-        </div>
-        <div className="side-images">
-          {property.images[1] && (
-            <img src={property.images[1]} alt="Propiedad secundaria 1" onClick={() => { setShowSlider(true); setSliderStartIndex(1); }}/>
-          )}
-          {property.images[2] && (
-            <img src={property.images[2]} alt="Propiedad secundaria 2" onClick={() => { setShowSlider(true); setSliderStartIndex(2); }}/>
-          )}
-        </div>
-      </div>
+ <div className="property-images-grid">
+  <div className="main-image">
+    {property?.images?.[0] && (
+      <img
+        src={`${API_URL}${property.images[0]}`}
+        alt="Imagen principal"
+        onClick={() => {
+          setShowSlider(true);
+          setSliderStartIndex(0);
+        }}
+      />
+    )}
+  </div>
+  <div className="side-images">
+    {property?.images?.[1] && (
+      <img
+        src={`${API_URL}${property.images[1]}`}
+        alt="Imagen secundaria 1"
+        onClick={() => {
+          setShowSlider(true);
+          setSliderStartIndex(1);
+        }}
+      />
+    )}
+    {property?.images?.[2] && (
+      <img
+        src={`${API_URL}${property.images[2]}`}
+        alt="Imagen secundaria 2"
+        onClick={() => {
+          setShowSlider(true);
+          setSliderStartIndex(2);
+        }}
+      />
+    )}
+  </div>
+</div>
 
       <h1 className="property-title">{property.title}</h1>
       <p className="property-price">  
@@ -117,9 +183,9 @@ const PropertyLandingPage = () => {
       <div className="property-amenities">
         <h2>Comodidades</h2>
         <div className="amenities-tags">
-          {property.amenities.map((amenity, index) => (
-            <span key={index} className="amenity-tag">{amenity}</span>
-          ))}
+          {Array.isArray(property.amenities) && property.amenities.map((amenity, index) => (
+  <span key={index} className="amenity-tag">{amenity}</span>
+))}
         </div>
       </div>
 
@@ -128,7 +194,7 @@ const PropertyLandingPage = () => {
           <FaWhatsapp /> Contáctanos por WhatsApp
         </a>
         <a
-          href={`mailto:amympropiedades@gmail.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`}
+          href={`mailto:${property.contact?.email}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`}
           className="contact-icon email"
         >
           <FaEnvelope /> Contáctanos por Email
@@ -184,10 +250,20 @@ const PropertyLandingPage = () => {
     <p>¡Te has suscrito para recibir alertas!</p>
   )}
 </div>
+    {isAdmin && (
+  <div className="admin-controls">
+    <button className="edit-button" onClick={(e) => { e.stopPropagation(); navigate(`/admin/edit-property/${property.id}`); }}>
+      ✏️ Editar
+    </button>
+    <button className="delete-button" onClick={handleDelete}>
+      🗑️ Eliminar
+    </button>
+  </div>
+)}
     </div>
           {showSlider && (
             <FullScreenSlider 
-              images={property.images} 
+              images={property.images.map(img => `${API_URL}${img}`)} 
               startIndex={sliderStartIndex} 
               onClose={() => setShowSlider(false)} 
             />

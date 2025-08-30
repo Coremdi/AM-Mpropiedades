@@ -1,0 +1,127 @@
+.edit-property-container {
+  max-width: 600px;
+  width: 100%;
+  margin: 50px auto;
+  padding: 2rem 1.5rem; /* reduce horizontal padding */
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  box-sizing: border-box;
+}
+
+.edit-property-container *,
+.edit-property-container *::before,
+.edit-property-container *::after {
+  box-sizing: inherit;
+}
+
+.edit-property-container h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 1rem;
+}
+
+/* Label styles unchanged */
+.edit-property-container label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #444;
+  
+}
+
+/* Inputs set to ~90% width to give breathing room */
+.edit-property-container input {
+  width: 90%;
+  max-width: 540px; /* max 90% of 600px */
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.edit-property-container input:focus {
+  border-color: #007BFF;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+/* Form buttons container */
+.form-actions {
+  display: flex;
+  justify-content: space-evenly; /* Even spacing */
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Buttons take ~45% width each to fit nicely side by side */
+.form-actions button {
+  flex: 1 1 45%;
+  min-width: 140px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-sizing: border-box;
+}
+
+.form-actions button:first-child {
+  background-color: #eee;
+  color: #333;
+}
+
+.form-actions button:first-child:hover {
+  background-color: #ddd;
+}
+
+.form-actions button:last-child {
+  background-color: #007BFF;
+  color: white;
+}
+
+.form-actions button:last-child:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .edit-property-container {
+    margin: 20px 10px;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .edit-property-container h2 {
+    font-size: 1.4rem;
+  }
+
+  /* Inputs wider on mobile, but not full width */
+  .edit-property-container input {
+    width: 95%;
+    max-width: none;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-actions button {
+    flex: 1 1 100%;
+    min-width: 0;
+    font-size: 0.95rem;
+  }
+}
