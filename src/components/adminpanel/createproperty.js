@@ -66,7 +66,7 @@ const handleImageChange = (e) => {
   });
 
   try {
-    const res = await fetch(`${API_URL}api/admin/createproperty`, {
+    const res = await fetch(`${API_URL}/api/admin/createproperty`, {
       method: "POST",
       body: form, // no need to set Content-Type — browser does it
     });
