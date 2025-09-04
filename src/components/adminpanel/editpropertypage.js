@@ -291,7 +291,9 @@ console.log("hasImageChanges:", hasImageChanges);
   <div className="image-grid">
     {formData.images?.map((imgPath, index) => (
       <div key={index} className="image-thumbnail">
-        <img src={`${API_URL}${imgPath}`} alt={`Imagen ${index + 1}`} />
+        <img src={process.env.REACT_APP_IN_VERCEL === "true"
+            ? imgPath
+            : `${API_URL}${imgPath}`} alt={`Imagen ${index + 1}`} />
         <button
           className="delete-image-button"
   onClick={() => {
