@@ -96,7 +96,7 @@ const handleBack = () => {
   return (
     <div className="loading-container">
       <div className="spinner"></div>
-      <p>Cargando propiedad...</p>
+      <p className="loading-text">Cargando propiedad...</p>
     </div>
   );
 }

@@ -414,12 +414,19 @@
 
 .spinner {
   border: 6px solid #f3f3f3; /* Light gray */
-  border-top: 6px solid #3498db; /* Blue */
+  border-top: 6px solid #0ddabe; /* Blue */
   border-radius: 50%;
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
   margin-bottom: 10px;
+}
+
+.loading-text {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0ddabe; /* 💡 Blue for consistency with spinner */
 }
 
 @keyframes spin {
