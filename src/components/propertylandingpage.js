@@ -92,7 +92,14 @@ const handleBack = () => {
     setSubscribed(true);
   };
 
-  if (!property) return <p>Cargando propiedad...</p>;
+ if (!property) {
+  return (
+    <div className="loading-container">
+      <div className="spinner"></div>
+      <p>Cargando propiedad...</p>
+    </div>
+  );
+}
 
   const whatsappMessage = `Hola, estoy interesado en la propiedad: ${window.location.href}. ¿Podrían brindarme más detalles?`;
   const whatsappLink = `https://wa.me/${property.contact?.whatsapp.replace("+", "")}?text=${encodeURIComponent(whatsappMessage)}`;
