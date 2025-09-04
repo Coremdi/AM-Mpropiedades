@@ -269,7 +269,7 @@ const handleBack = () => {
     </div>
           {showSlider && (
             <FullScreenSlider 
-              images={property.images.map(img => `${API_URL}${img}`)} 
+              images={property.images.map(img => process.env.REACT_APP_IN_VERCEL === "true" ? img : `${API_URL}${img}`)} 
               startIndex={sliderStartIndex} 
               onClose={() => setShowSlider(false)} 
             />
