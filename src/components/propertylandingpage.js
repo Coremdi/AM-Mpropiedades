@@ -114,7 +114,9 @@ const handleBack = () => {
   <div className="main-image">
     {property?.images?.[0] && (
       <img
-        src={`${API_URL}${property.images[0]}`}
+        src={process.env.REACT_APP_IN_VERCEL === "true"
+            ? property.images[0]
+            : `${API_URL}${property.images[0]}`}
         alt="Imagen principal"
         onClick={() => {
           setShowSlider(true);
@@ -126,7 +128,9 @@ const handleBack = () => {
   <div className="side-images">
     {property?.images?.[1] && (
       <img
-        src={`${API_URL}${property.images[1]}`}
+        src={process.env.REACT_APP_IN_VERCEL === "true"
+            ? property.images[1]
+            : `${API_URL}${property.images[1]}`}
         alt="Imagen secundaria 1"
         onClick={() => {
           setShowSlider(true);
@@ -136,7 +140,9 @@ const handleBack = () => {
     )}
     {property?.images?.[2] && (
       <img
-        src={`${API_URL}${property.images[2]}`}
+        src={process.env.REACT_APP_IN_VERCEL === "true"
+            ? property.images[2]
+            : `${API_URL}${property.images[2]}`}
         alt="Imagen secundaria 2"
         onClick={() => {
           setShowSlider(true);
